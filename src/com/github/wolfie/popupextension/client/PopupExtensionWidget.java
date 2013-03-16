@@ -1,4 +1,4 @@
-package com.github.wolfie.popuplayout.client;
+package com.github.wolfie.popupextension.client;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -46,6 +46,7 @@ public class PopupExtensionWidget extends VOverlay {
 	private int yOffset;
 
 	public PopupExtensionWidget() {
+		setStyleName("h-popupextension");
 		setShadowEnabled(false);
 		Window.addResizeHandler(new ResizeHandler() {
 			@Override

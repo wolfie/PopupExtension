@@ -1,4 +1,4 @@
-package com.github.wolfie.popuplayout;
+package com.github.wolfie.popupextension;
 
 import com.vaadin.data.Property.ValueChangeEvent;
 import com.vaadin.data.Property.ValueChangeListener;
@@ -27,6 +27,7 @@ public class ControlPanel extends CustomComponent {
 	public ControlPanel(final PopupExtension popupExtension) {
 		this.popupExtension = popupExtension;
 		setCompositionRoot(layout);
+		setWidth("350px");
 
 		anchorsV = new OptionGroup("Anchor, Vertical");
 		anchorsV.setImmediate(true);

@@ -1,4 +1,4 @@
-package com.github.wolfie.popuplayout.client;
+package com.github.wolfie.popupextension.client;
 
 import com.google.gwt.user.client.DOM;
 import com.google.gwt.user.client.ui.Widget;

@@ -1,6 +1,6 @@
-package com.github.wolfie.popuplayout;
+package com.github.wolfie.popupextension;
 
-import com.github.wolfie.popuplayout.client.PopupExtensionDataTransferComponentState;
+import com.github.wolfie.popupextension.client.PopupExtensionDataTransferComponentState;
 import com.vaadin.ui.AbstractSingleComponentContainer;
 
 /**

@@ -1,6 +1,6 @@
-package com.github.wolfie.popuplayout.client;
+package com.github.wolfie.popupextension.client;
 
-import com.github.wolfie.popuplayout.PopupExtensionDataTransferComponent;
+import com.github.wolfie.popupextension.PopupExtensionDataTransferComponent;
 import com.google.gwt.user.client.Timer;
 import com.vaadin.client.ComponentConnector;
 import com.vaadin.client.ConnectorHierarchyChangeEvent;
