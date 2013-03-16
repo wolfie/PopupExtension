@@ -1,19 +1,23 @@
-package com.github.wolfie.popuplayout;
+package com.github.wolfie.popupextension;
 
 import com.vaadin.server.ExternalResource;
 import com.vaadin.server.VaadinRequest;
+import com.vaadin.shared.ui.label.ContentMode;
 import com.vaadin.ui.AbsoluteLayout;
 import com.vaadin.ui.Alignment;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.Button.ClickEvent;
-import com.vaadin.ui.Image;
+import com.vaadin.ui.Component;
+import com.vaadin.ui.CssLayout;
+import com.vaadin.ui.Embedded;
+import com.vaadin.ui.Label;
 import com.vaadin.ui.UI;
 
 /**
  * Main UI class
  */
 @SuppressWarnings("serial")
-public class PopuplayoutDemoUI extends UI {
+public class PopupextensionDemoUI extends UI {
 
 	@Override
 	protected void init(final VaadinRequest request) {
@@ -31,14 +35,27 @@ public class PopuplayoutDemoUI extends UI {
 		});
 		layout.addComponent(button, "top:50%;left:50%");
 
-		popupExtension.setContent(new Image("", new ExternalResource(
-				"http://data.whicdn.com/images/12472262/"
-						+ "tumblr_loxja5GvVA1qf7ikto1_400_thumb.jpg")));
+		popupExtension.setContent(getTestLayout());
 		popupExtension.setAnchor(Alignment.BOTTOM_RIGHT);
 		popupExtension.setDirection(Alignment.BOTTOM_RIGHT);
 
 		layout.addComponent(new ControlPanel(popupExtension),
 				"top:10px;left:10px");
+	}
+
+	private Component getTestLayout() {
+		final CssLayout layout = new CssLayout();
+		layout.setWidth("300px");
+		layout.setHeight("300px");
+
+		layout.addComponent(new Label("<h1>Test Layout</h1>", ContentMode.HTML));
+		layout.addComponent(new Button("I do nothing"));
+		final Embedded embedded = new Embedded("", new ExternalResource(
+				"http://i1.kym-cdn.com/photos/"
+						+ "images/original/000/011/296/success_baby.jpg"));
+		embedded.setWidth("250px");
+		layout.addComponent(embedded);
+		return layout;
 	}
 
 }

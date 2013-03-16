@@ -1,9 +1,9 @@
-package com.github.wolfie.popuplayout;
+package com.github.wolfie.popupextension;
 
 import java.util.UUID;
 
-import com.github.wolfie.popuplayout.client.PopupExtensionServerRpc;
-import com.github.wolfie.popuplayout.client.PopupExtensionState;
+import com.github.wolfie.popupextension.client.PopupExtensionServerRpc;
+import com.github.wolfie.popupextension.client.PopupExtensionState;
 import com.vaadin.server.AbstractClientConnector;
 import com.vaadin.server.AbstractExtension;
 import com.vaadin.ui.AbstractOrderedLayout;

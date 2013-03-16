@@ -1,7 +1,7 @@
-package com.github.wolfie.popuplayout.client;
+package com.github.wolfie.popupextension.client;
 
-import com.github.wolfie.popuplayout.PopupExtension;
-import com.github.wolfie.popuplayout.client.PopupExtensionWidget.VisibilityChangeListener;
+import com.github.wolfie.popupextension.PopupExtension;
+import com.github.wolfie.popupextension.client.PopupExtensionWidget.VisibilityChangeListener;
 import com.google.gwt.user.client.ui.Widget;
 import com.vaadin.client.ComponentConnector;
 import com.vaadin.client.ServerConnector;
