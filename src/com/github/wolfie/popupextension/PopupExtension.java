@@ -7,6 +7,7 @@ import com.github.wolfie.popupextension.client.PopupExtensionState;
 import com.vaadin.server.AbstractClientConnector;
 import com.vaadin.server.AbstractExtension;
 import com.vaadin.ui.AbstractOrderedLayout;
+import com.vaadin.ui.AbstractSingleComponentContainer;
 import com.vaadin.ui.Alignment;
 import com.vaadin.ui.Component;
 import com.vaadin.ui.ComponentContainer;
@@ -60,6 +61,12 @@ public class PopupExtension extends AbstractExtension {
 		}
 
 		return popup;
+	}
+
+	@Override
+	public void detach() {
+		AbstractSingleComponentContainer.removeFromParent(dataTransferComponent);
+		super.detach();
 	}
 
 	public void open() {
