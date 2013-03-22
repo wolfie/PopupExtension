@@ -7,6 +7,7 @@ import com.vaadin.ui.AbsoluteLayout;
 import com.vaadin.ui.Alignment;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.Button.ClickEvent;
+import com.vaadin.ui.Button.ClickListener;
 import com.vaadin.ui.Component;
 import com.vaadin.ui.CssLayout;
 import com.vaadin.ui.Embedded;
@@ -19,12 +20,20 @@ import com.vaadin.ui.UI;
 @SuppressWarnings("serial")
 public class PopupextensionDemoUI extends UI {
 
+	private final AbsoluteLayout layout = new AbsoluteLayout();
+
 	@Override
 	protected void init(final VaadinRequest request) {
-		final AbsoluteLayout layout = new AbsoluteLayout();
-		setContent(layout);
+		final CssLayout cssLayout = new CssLayout(layout);
+		setContent(cssLayout);
+		cssLayout.setSizeFull();
 		layout.setSizeFull();
 
+		resetUi();
+	}
+
+	private void resetUi() {
+		layout.removeAllComponents();
 		final Button button = new Button("Click Me");
 		final PopupExtension popupExtension = PopupExtension.extend(button);
 		button.addClickListener(new Button.ClickListener() {
@@ -39,8 +48,14 @@ public class PopupextensionDemoUI extends UI {
 		popupExtension.setAnchor(Alignment.BOTTOM_RIGHT);
 		popupExtension.setDirection(Alignment.BOTTOM_RIGHT);
 
-		layout.addComponent(new ControlPanel(popupExtension),
-				"top:10px;left:10px");
+		layout.addComponent(new ControlPanel(popupExtension), "top:10px;left:10px");
+
+		layout.addComponent(new Button("reset view", new ClickListener() {
+			@Override
+			public void buttonClick(final ClickEvent event) {
+				resetUi();
+			}
+		}), "top:0;right:0");
 	}
 
 	private Component getTestLayout() {
