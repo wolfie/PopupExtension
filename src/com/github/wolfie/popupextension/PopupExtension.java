@@ -1,5 +1,6 @@
 package com.github.wolfie.popupextension;
 
+import java.util.List;
 import java.util.UUID;
 
 import com.github.wolfie.popupextension.client.PopupExtensionServerRpc;
@@ -15,6 +16,10 @@ import com.vaadin.ui.UI;
 
 public class PopupExtension extends AbstractExtension {
 
+	public interface PopupVisibilityListener {
+		void visibilityChanged(boolean isOpened);
+	}
+
 	private static final long serialVersionUID = -5944700694390672500L;
 	private static final Alignment DEFAULLT_ANCHOR = Alignment.MIDDLE_CENTER;
 	private static final Alignment DEFAULT_DIRECTION = Alignment.MIDDLE_CENTER;
@@ -23,6 +28,7 @@ public class PopupExtension extends AbstractExtension {
 	private Alignment direction;
 	private Component content;
 	private PopupExtensionDataTransferComponent dataTransferComponent;
+	private List<PopupVisibilityListener> listeners;
 
 	private PopupExtension() {
 		setAnchor(DEFAULLT_ANCHOR);
@@ -34,7 +40,10 @@ public class PopupExtension extends AbstractExtension {
 
 			@Override
 			public void setOpen(final boolean open) {
-				getState().open = open;
+				if (open != getState().open) {
+					getState().open = open;
+					fireVisibilityListeners();
+				}
 			}
 		});
 	}
@@ -46,8 +55,11 @@ public class PopupExtension extends AbstractExtension {
 		final Component content = UI.getCurrent().getContent();
 		if (!(content instanceof ComponentContainer)) {
 			throw new UnsupportedOperationException(
-					"UI's content isn't a ComponentContainer. "
-							+ "PopupExtension requires one of those to work properly.");
+					"UI.getCurrent().getContent() doesn't "
+							+ "return a ComponentContainer (Currently: "
+							+ content.getClass().getSimpleName()
+							+ ") PopupExtension requires a ComponentContainer "
+							+ "as the UI's content to work properly.");
 		} else {
 			final ComponentContainer ccContent = (ComponentContainer) content;
 			popup.dataTransferComponent = new PopupExtensionDataTransferComponent(
@@ -158,5 +170,35 @@ public class PopupExtension extends AbstractExtension {
 	@Override
 	protected PopupExtensionState getState() {
 		return (PopupExtensionState) super.getState();
+	}
+
+	/**
+	 * @param listener
+	 *          a non-<code>null</code> listener.
+	 * @throws IllegalArgumentException
+	 *           if <code>listener</code> is <code>null</code>.
+	 */
+	public void addPopupVisibilityListener(
+			final PopupVisibilityListener listener) {
+		if (listener != null) {
+			listeners.add(listener);
+		} else {
+			throw new IllegalArgumentException("Listener can't be null");
+		}
+	}
+
+	/**
+	 * @return <code>true</code> iff the given <code>listener</code> was found and
+	 *         removed from this.
+	 */
+	public boolean removePopupVisibilityListener(
+			final PopupVisibilityListener listener) {
+		return listeners.remove(listener);
+	}
+
+	private void fireVisibilityListeners() {
+		for (final PopupVisibilityListener listener : listeners) {
+			listener.visibilityChanged(getState().open);
+		}
 	}
 }
