@@ -1,6 +1,7 @@
 package com.github.wolfie.popupextension.demo;
 
 import com.github.wolfie.popupextension.PopupExtension;
+import com.github.wolfie.popupextension.PopupExtension.PopupVisibilityListener;
 import com.vaadin.server.ExternalResource;
 import com.vaadin.server.VaadinRequest;
 import com.vaadin.shared.ui.label.ContentMode;
@@ -13,6 +14,7 @@ import com.vaadin.ui.Component;
 import com.vaadin.ui.CssLayout;
 import com.vaadin.ui.Embedded;
 import com.vaadin.ui.Label;
+import com.vaadin.ui.Notification;
 import com.vaadin.ui.UI;
 
 /**
@@ -48,6 +50,13 @@ public class PopupextensionDemoUI extends UI {
 		popupExtension.setContent(getTestLayout());
 		popupExtension.setAnchor(Alignment.BOTTOM_RIGHT);
 		popupExtension.setDirection(Alignment.BOTTOM_RIGHT);
+		popupExtension.addPopupVisibilityListener(new PopupVisibilityListener() {
+			@Override
+			public void visibilityChanged(final boolean isOpened) {
+				Notification.show("Popup was " + (isOpened ? "opened" : "closed"),
+						Notification.Type.TRAY_NOTIFICATION);
+			}
+		});
 
 		layout.addComponent(new ControlPanel(popupExtension), "top:10px;left:10px");
 

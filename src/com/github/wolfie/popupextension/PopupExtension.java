@@ -143,10 +143,12 @@ public class PopupExtension extends AbstractExtension {
 
 	public void open() {
 		getState().open = true;
+		fireVisibilityListeners();
 	}
 
 	public void close() {
 		getState().open = false;
+		fireVisibilityListeners();
 	}
 
 	public void closeOnOutsideMouseClick(final boolean enable) {
