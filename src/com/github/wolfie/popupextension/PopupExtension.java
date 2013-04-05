@@ -28,7 +28,7 @@ public class PopupExtension extends AbstractExtension {
 	private Alignment direction;
 	private Component content;
 	private PopupExtensionDataTransferComponent dataTransferComponent;
-	private List<PopupVisibilityListener> listeners;
+	private final List<PopupVisibilityListener> listeners = new ArrayList<PopupExtension.PopupVisibilityListener>();
 
 	private PopupExtension() {
 		setAnchor(DEFAULLT_ANCHOR);
