@@ -13,8 +13,8 @@
 		<init-param>
 			<description>
 			Vaadin UI class to use</description>
-			<param-name>UI</param-name>
-			<param-value>com.github.wolfie.popupextension.PopupextensionDemoUI</param-value>
+			<param-name>UIProvider</param-name>
+			<param-value>com.github.wolfie.popupextension.demo.PopupExtensionUIProvider</param-value>
 		</init-param>
 		<init-param>
 			<description>

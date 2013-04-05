@@ -1,5 +1,6 @@
-package com.github.wolfie.popupextension;
+package com.github.wolfie.popupextension.demo;
 
+import com.github.wolfie.popupextension.PopupExtension;
 import com.vaadin.server.ExternalResource;
 import com.vaadin.server.VaadinRequest;
 import com.vaadin.shared.ui.label.ContentMode;

@@ -1,5 +1,6 @@
 package com.github.wolfie.popupextension;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -18,6 +19,12 @@ public class PopupExtension extends AbstractExtension {
 
 	public interface PopupVisibilityListener {
 		void visibilityChanged(boolean isOpened);
+	}
+
+	public interface PopupExtensionManualBundle {
+		PopupExtension getPopupExtension();
+
+		PopupExtensionDataTransferComponent getDataTransferComponent();
 	}
 
 	private static final long serialVersionUID = -5944700694390672500L;
@@ -48,6 +55,23 @@ public class PopupExtension extends AbstractExtension {
 		});
 	}
 
+	/**
+	 * <p>
+	 * Attach and align the PopupExtension relative to the given component
+	 * </p>
+	 * 
+	 * <p>
+	 * <i>Note:</i> Due to a workaround for Vaadin, PopupExtension needs to place
+	 * a data transfer component in your {@link UI UI's} content. Therefore, that
+	 * content needs to be an instance of {@link ComponentContainer}. If that's
+	 * not suitable, you can use {@link #extendWithManualBundle(Component)} to
+	 * manually place the data transfer component.
+	 * </p>
+	 * 
+	 * @param c
+	 * @return
+	 * @see #extendWithManualBundle(Component)
+	 */
 	public static PopupExtension extend(final Component c) {
 		final PopupExtension popup = new PopupExtension();
 		popup.extend((AbstractClientConnector) c);
@@ -58,7 +82,7 @@ public class PopupExtension extends AbstractExtension {
 					"UI.getCurrent().getContent() doesn't "
 							+ "return a ComponentContainer (Currently: "
 							+ content.getClass().getSimpleName()
-							+ ") PopupExtension requires a ComponentContainer "
+							+ "). PopupExtension requires a ComponentContainer "
 							+ "as the UI's content to work properly.");
 		} else {
 			final ComponentContainer ccContent = (ComponentContainer) content;
@@ -73,6 +97,42 @@ public class PopupExtension extends AbstractExtension {
 		}
 
 		return popup;
+	}
+
+	/**
+	 * <p>
+	 * Attach and align the PopupExtension relative to the given component
+	 * </p>
+	 * 
+	 * <p>
+	 * Add the returned {@link PopupExtensionDataTransferComponent} somewhere in
+	 * your component hierarchy in such a way that it's present at all times
+	 * whenever you need the {@link PopupExtension}.
+	 * </p>
+	 * 
+	 * @param c
+	 * @return an object containing the paired {@link PopupExtension} and
+	 *         {@link PopupExtensionDataTransferComponent}.
+	 */
+	public static PopupExtensionManualBundle extendWithManualBundle(
+			final Component c) {
+		final PopupExtension popup = new PopupExtension();
+		popup.extend((AbstractClientConnector) c);
+		final PopupExtensionDataTransferComponent dataTransferComponent = new PopupExtensionDataTransferComponent(
+				popup.getState().id);
+		popup.dataTransferComponent = dataTransferComponent;
+
+		return new PopupExtensionManualBundle() {
+			@Override
+			public PopupExtension getPopupExtension() {
+				return popup;
+			}
+
+			@Override
+			public PopupExtensionDataTransferComponent getDataTransferComponent() {
+				return dataTransferComponent;
+			}
+		};
 	}
 
 	@Override
@@ -93,11 +153,18 @@ public class PopupExtension extends AbstractExtension {
 		getState().closeOnOutsideMouseClick = enable;
 	}
 
+	/**
+	 * @return <code>true</code> iff this instance has been configured to close on
+	 *         outside mouse click.
+	 * @see PopupExtension#closeOnOutsideMouseClick(boolean)
+	 */
 	public boolean closeOnOutsideMouseClick() {
 		return getState().closeOnOutsideMouseClick;
 	}
 
 	/**
+	 * Set the content of the popup.
+	 * 
 	 * @throws IllegalArgumentException
 	 *             if <code>content</code> is <code>null</code>.
 	 */
