@@ -270,4 +270,22 @@ public class PopupExtension extends AbstractExtension {
 			listener.visibilityChanged(getState().open);
 		}
 	}
+
+	/**
+	 * Set the CSS style name for the popup. A <code>null</code> argument, or an
+	 * empty string, or a string that is empty when trimmed, will remove the
+	 * style name.
+	 */
+	public void setPopupStyleName(final String popupStyleName) {
+		if (!(popupStyleName != null && popupStyleName.trim().isEmpty())) {
+			getState().popupStyleName = popupStyleName;
+		} else {
+			getState().popupStyleName = null;
+		}
+	}
+
+	/** Get the current CSS style name for the popup. */
+	public String getPopupStyleName() {
+		return getState().popupStyleName;
+	}
 }

@@ -63,6 +63,10 @@ public class PopupExtensionConnector extends AbstractExtensionConnector
 			popup.closeOnOutsideMouseClick(getState().closeOnOutsideMouseClick);
 		}
 
+		if (e.hasPropertyChanged("popupStyleName")) {
+			popup.setPopupStyleName(getState().popupStyleName);
+		}
+
 		popup.setOffset(getState().xOffset, getState().yOffset);
 	}
 

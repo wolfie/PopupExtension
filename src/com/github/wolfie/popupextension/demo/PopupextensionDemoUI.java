@@ -50,6 +50,7 @@ public class PopupextensionDemoUI extends UI {
 		popupExtension.setContent(getTestLayout());
 		popupExtension.setAnchor(Alignment.BOTTOM_RIGHT);
 		popupExtension.setDirection(Alignment.BOTTOM_RIGHT);
+		popupExtension.setPopupStyleName("demopopup");
 		popupExtension.addPopupVisibilityListener(new PopupVisibilityListener() {
 			@Override
 			public void visibilityChanged(final boolean isOpened) {

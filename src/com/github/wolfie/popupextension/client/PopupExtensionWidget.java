@@ -21,6 +21,8 @@ import com.vaadin.shared.ui.AlignmentInfo;
 
 public class PopupExtensionWidget extends VOverlay {
 
+	private static final String STYLE_NAME = "h-popupextension";
+
 	public interface VisibilityChangeListener {
 		public void becameVisible(boolean visible, PopupExtensionWidget widget);
 	}
@@ -46,7 +48,7 @@ public class PopupExtensionWidget extends VOverlay {
 	private int yOffset;
 
 	public PopupExtensionWidget() {
-		setStyleName("h-popupextension");
+		setPopupStyleName(null);
 		setShadowEnabled(false);
 		Window.addResizeHandler(new ResizeHandler() {
 			@Override
@@ -192,6 +194,19 @@ public class PopupExtensionWidget extends VOverlay {
 
 		if (changed) {
 			repositionMaybe();
+		}
+	}
+
+	/**
+	 * Set the CSS style name for the popup element. <code>null</code> will
+	 * erase the stylename.
+	 */
+	public void setPopupStyleName(final String styleName) {
+		setStyleName(STYLE_NAME);
+
+		if (styleName != null) {
+			addStyleName(STYLE_NAME + "-" + styleName);
+			addStyleName(styleName);
 		}
 	}
 }

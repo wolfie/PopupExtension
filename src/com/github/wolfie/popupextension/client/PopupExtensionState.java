@@ -16,4 +16,6 @@ public class PopupExtensionState extends SharedState {
 
 	public int xOffset;
 	public int yOffset;
+
+	public String popupStyleName;
 }
