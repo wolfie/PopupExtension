@@ -36,6 +36,7 @@ public class PopupExtension extends AbstractExtension {
 	private Component content;
 	private PopupExtensionDataTransferComponent dataTransferComponent;
 	private final List<PopupVisibilityListener> listeners = new ArrayList<PopupExtension.PopupVisibilityListener>();
+	private boolean dataTranserComponentIsMagicallyAdded;
 
 	private PopupExtension() {
 		setAnchor(DEFAULLT_ANCHOR);
@@ -74,6 +75,7 @@ public class PopupExtension extends AbstractExtension {
 	 */
 	public static PopupExtension extend(final Component c) {
 		final PopupExtension popup = new PopupExtension();
+		popup.dataTranserComponentIsMagicallyAdded = true;
 		popup.extend((AbstractClientConnector) c);
 
 		final Component content = UI.getCurrent().getContent();
@@ -137,8 +139,15 @@ public class PopupExtension extends AbstractExtension {
 
 	@Override
 	public void detach() {
-		AbstractSingleComponentContainer.removeFromParent(dataTransferComponent);
+		if (dataTranserComponentIsMagicallyAdded) {
+			AbstractSingleComponentContainer.removeFromParent(dataTransferComponent);
+		}
 		super.detach();
+	}
+
+	public void toggle() {
+		getState().open = !getState().open;
+		fireVisibilityListeners();
 	}
 
 	public void open() {
