@@ -12,7 +12,7 @@ import com.vaadin.shared.ui.Connect;
 
 @Connect(PopupExtension.class)
 public class PopupExtensionConnector extends AbstractExtensionConnector
-		implements VisibilityChangeListener {
+implements VisibilityChangeListener {
 	private static final long serialVersionUID = -6833923031674458681L;
 
 	private Widget extendedWidget;
@@ -38,13 +38,24 @@ public class PopupExtensionConnector extends AbstractExtensionConnector
 	@Override
 	public void onUnregister() {
 		super.onUnregister();
-		PopupExtensionWidget.instances.remove(getState().id);
+		PopupExtensionWidget.INSTANCES.remove(getState().id);
 	}
 
 	@Override
 	public void onStateChanged(final StateChangeEvent e) {
 		if (e.hasPropertyChanged("id")) {
-			PopupExtensionWidget.instances.put(getState().id, popup);
+			PopupExtensionWidget.INSTANCES.put(getState().id, popup);
+
+			/*
+			 * This ensures that if the PopupExtension is persistent, and is
+			 * removed and reattached over time, the popup contents are
+			 * re-injected every time.
+			 */
+			final PopupExtensionDataTransferComponentConnector data = PopupExtensionDataTransferComponentConnector.INSTANCES
+					.get(getState().id);
+			if (data != null) {
+				data.reinject(popup);
+			}
 		}
 
 		if (e.hasPropertyChanged("anchor")) {

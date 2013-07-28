@@ -27,7 +27,7 @@ public class PopupExtensionWidget extends VOverlay {
 		public void becameVisible(boolean visible, PopupExtensionWidget widget);
 	}
 
-	static final Map<String, PopupExtensionWidget> instances = new HashMap<String, PopupExtensionWidget>();
+	static final Map<String, PopupExtensionWidget> INSTANCES = new HashMap<String, PopupExtensionWidget>();
 
 	private AlignmentInfo anchor;
 	private AlignmentInfo direction;

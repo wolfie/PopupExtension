@@ -1,17 +1,23 @@
 package com.github.wolfie.popupextension.client;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import com.github.wolfie.popupextension.PopupExtensionDataTransferComponent;
 import com.google.gwt.user.client.Timer;
 import com.vaadin.client.ComponentConnector;
 import com.vaadin.client.ConnectorHierarchyChangeEvent;
 import com.vaadin.client.VConsole;
+import com.vaadin.client.communication.StateChangeEvent;
 import com.vaadin.client.ui.AbstractSingleComponentContainerConnector;
 import com.vaadin.shared.ui.Connect;
 
 @Connect(PopupExtensionDataTransferComponent.class)
 public class PopupExtensionDataTransferComponentConnector extends
-		AbstractSingleComponentContainerConnector {
+AbstractSingleComponentContainerConnector {
 	private static final long serialVersionUID = -7639852945015403740L;
+
+	static final Map<String, PopupExtensionDataTransferComponentConnector> INSTANCES = new HashMap<String, PopupExtensionDataTransferComponentConnector>();
 
 	@Override
 	public void onConnectorHierarchyChange(
@@ -26,7 +32,7 @@ public class PopupExtensionDataTransferComponentConnector extends
 
 			@Override
 			public void run() {
-				final PopupExtensionWidget popup = PopupExtensionWidget.instances
+				final PopupExtensionWidget popup = PopupExtensionWidget.INSTANCES
 						.get(getState().popupId);
 
 				if (popup != null) {
@@ -47,7 +53,21 @@ public class PopupExtensionDataTransferComponentConnector extends
 				}
 			}
 		}.scheduleRepeating(50);
+	}
 
+	@Override
+	public void onStateChanged(final StateChangeEvent stateChangeEvent) {
+		super.onStateChanged(stateChangeEvent);
+
+		if (stateChangeEvent.hasPropertyChanged("popupId")) {
+			INSTANCES.put(getState().popupId, this);
+		}
+	}
+
+	@Override
+	public void onUnregister() {
+		INSTANCES.remove(getState().popupId);
+		super.onUnregister();
 	}
 
 	@Override
@@ -62,6 +82,14 @@ public class PopupExtensionDataTransferComponentConnector extends
 
 	@Override
 	public void updateCaption(final ComponentConnector connector) {
+	}
+
+	void reinject(final PopupExtensionWidget popup) {
+		if (getChildComponents().isEmpty()) {
+			popup.clear();
+		} else {
+			popup.setWidget(getChildComponents().get(0).getWidget());
+		}
 	}
 
 }
