@@ -48,7 +48,7 @@ public class PopupExtension extends AbstractExtension {
 
 			@Override
 			public void setOpen(final boolean open) {
-				if (open != getState().open) {
+				if (open != getState().open && getState().closeOnOutsideMouseClick) {
 					getState().open = open;
 					fireVisibilityListeners();
 				}
