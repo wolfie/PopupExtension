@@ -18,8 +18,6 @@ implements VisibilityChangeListener {
 	private Widget extendedWidget;
 	private final PopupExtensionWidget popup = new PopupExtensionWidget();
 
-	private final boolean iChangedVisibility = false;
-
 	private PopupExtensionServerRpc rpc;
 
 	@Override
@@ -67,7 +65,7 @@ implements VisibilityChangeListener {
 		}
 
 		if (e.hasPropertyChanged("open")) {
-			popup.setOpen(getState().open);
+			popup.setOpen(getState().open, true);
 		}
 
 		if (e.hasPropertyChanged("closeOnOutsideMouseClick")) {
@@ -88,9 +86,10 @@ implements VisibilityChangeListener {
 
 	@Override
 	public void becameVisible(final boolean visible,
-			final PopupExtensionWidget widget) {
-		if (!iChangedVisibility) {
-			rpc.setOpen(visible);
-		}
+                              final PopupExtensionWidget widget,
+                              boolean serverSideChange) {
+        if (!serverSideChange) {
+            rpc.setOpen(visible);
+        }
 	}
 }

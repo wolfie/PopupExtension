@@ -24,7 +24,7 @@ public class PopupExtensionWidget extends VOverlay {
 	private static final String STYLE_NAME = "h-popupextension";
 
 	public interface VisibilityChangeListener {
-		public void becameVisible(boolean visible, PopupExtensionWidget widget);
+		public void becameVisible(boolean visible, PopupExtensionWidget widget, boolean serverSideChange);
 	}
 
 	static final Map<String, PopupExtensionWidget> INSTANCES = new HashMap<String, PopupExtensionWidget>();
@@ -79,7 +79,7 @@ public class PopupExtensionWidget extends VOverlay {
 		reposition(getOffsetWidth(), getOffsetHeight());
 	}
 
-	public void setOpen(final boolean open) {
+	public void setOpen(final boolean open, boolean serverSideChange) {
 		if ((isShowing() && open) || (!isShowing() && !open)) {
 			return;
 		}
@@ -99,7 +99,7 @@ public class PopupExtensionWidget extends VOverlay {
 		}
 
 		for (final VisibilityChangeListener listener : visibilityChangeListeners) {
-			listener.becameVisible(open, this);
+			listener.becameVisible(open, this, serverSideChange);
 		}
 	}
 
@@ -165,7 +165,7 @@ public class PopupExtensionWidget extends VOverlay {
 														.getEventTarget()));
 
 								if (!thisWasClicked) {
-									setOpen(false);
+									setOpen(false, false);
 								}
 							}
 						}
