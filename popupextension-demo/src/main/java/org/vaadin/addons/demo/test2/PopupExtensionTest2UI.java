@@ -1,6 +1,7 @@
-package com.github.wolfie.popupextension.test2;
+package org.vaadin.addons.demo.test2;
 
-import com.github.wolfie.popupextension.PopupExtension;
+import org.vaadin.addons.PopupExtension;
+
 import com.vaadin.server.VaadinRequest;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.Button.ClickEvent;

@@ -1,7 +1,7 @@
-package com.github.wolfie.popupextension.test8;
+package org.vaadin.addons.demo.test8;
 
-import com.github.wolfie.popupextension.PopupExtension;
-import com.github.wolfie.popupextension.PopupExtension.PopupExtensionManualBundle;
+import org.vaadin.addons.PopupExtension;
+
 import com.vaadin.server.VaadinRequest;
 import com.vaadin.ui.Alignment;
 import com.vaadin.ui.Button;
@@ -41,7 +41,7 @@ public class PopupExtensionTest8UI extends UI {
 
 	private Component getLayout1() {
 		final Button button = new Button("layotu1");
-		final PopupExtensionManualBundle bundle = PopupExtension
+		final PopupExtension.PopupExtensionManualBundle bundle = PopupExtension
 				.extendWithManualBundle(button);
 		final PopupExtension popup = bundle.getPopupExtension();
 		layout.addComponent(bundle.getDataTransferComponent());

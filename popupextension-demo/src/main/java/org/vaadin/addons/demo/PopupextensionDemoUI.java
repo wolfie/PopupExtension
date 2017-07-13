@@ -1,9 +1,13 @@
-package com.github.wolfie.popupextension.demo;
+package org.vaadin.addons.demo;
 
-import com.github.wolfie.popupextension.PopupExtension;
-import com.github.wolfie.popupextension.PopupExtension.PopupVisibilityListener;
+import javax.servlet.annotation.WebServlet;
+
+import org.vaadin.addons.PopupExtension;
+
+import com.vaadin.annotations.VaadinServletConfiguration;
 import com.vaadin.server.ExternalResource;
 import com.vaadin.server.VaadinRequest;
+import com.vaadin.server.VaadinServlet;
 import com.vaadin.shared.ui.label.ContentMode;
 import com.vaadin.ui.AbsoluteLayout;
 import com.vaadin.ui.Alignment;
@@ -23,6 +27,11 @@ import com.vaadin.ui.UI;
 @SuppressWarnings("serial")
 public class PopupextensionDemoUI extends UI {
 
+	@WebServlet(value = "/*", asyncSupported = true)
+	@VaadinServletConfiguration(productionMode = false, ui = PopupextensionDemoUI.class)
+	public static class Servlet extends VaadinServlet {
+	}
+
 	private final AbsoluteLayout layout = new AbsoluteLayout();
 
 	@Override
@@ -39,7 +48,7 @@ public class PopupextensionDemoUI extends UI {
 		layout.removeAllComponents();
 		final Button button = new Button("Click Me");
 		final PopupExtension popupExtension = PopupExtension.extend(button);
-		button.addClickListener(new Button.ClickListener() {
+		button.addClickListener(new ClickListener() {
 			@Override
 			public void buttonClick(final ClickEvent event) {
 				popupExtension.open();
@@ -51,7 +60,7 @@ public class PopupextensionDemoUI extends UI {
 		popupExtension.setAnchor(Alignment.BOTTOM_RIGHT);
 		popupExtension.setDirection(Alignment.BOTTOM_RIGHT);
 		popupExtension.setPopupStyleName("demopopup");
-		popupExtension.addPopupVisibilityListener(new PopupVisibilityListener() {
+		popupExtension.addPopupVisibilityListener(new PopupExtension.PopupVisibilityListener() {
 			@Override
 			public void visibilityChanged(final boolean isOpened) {
 				Notification.show("Popup was " + (isOpened ? "opened" : "closed"),

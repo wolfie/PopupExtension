@@ -1,7 +1,7 @@
-package com.github.wolfie.popupextension.test1;
+package org.vaadin.addons.demo.test1;
 
-import com.github.wolfie.popupextension.PopupExtension;
-import com.github.wolfie.popupextension.PopupExtension.PopupExtensionManualBundle;
+import org.vaadin.addons.PopupExtension;
+
 import com.vaadin.ui.Button;
 import com.vaadin.ui.Button.ClickEvent;
 import com.vaadin.ui.Button.ClickListener;
@@ -17,7 +17,7 @@ public class TestComponent extends CustomComponent {
 		final Button button = new Button("foo");
 		layout.addComponent(button);
 
-		final PopupExtensionManualBundle bundle = PopupExtension
+		final PopupExtension.PopupExtensionManualBundle bundle = PopupExtension
 				.extendWithManualBundle(button);
 
 		final PopupExtension popupExtension = bundle.getPopupExtension();

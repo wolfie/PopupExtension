@@ -1,7 +1,7 @@
-div.popupextension {
-	cursor: pointer;
-	user-select: none;
-	-webkit-user-select: none;
-	-moz-user-select: none;
-	-ms-user-select: none;
+.h-popupextension {
+	background-color: white;
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
+	padding: 10px;
 }

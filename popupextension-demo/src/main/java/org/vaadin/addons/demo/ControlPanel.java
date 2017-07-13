@@ -1,6 +1,7 @@
-package com.github.wolfie.popupextension.demo;
+package org.vaadin.addons.demo;
 
-import com.github.wolfie.popupextension.PopupExtension;
+import org.vaadin.addons.PopupExtension;
+
 import com.vaadin.data.Property.ValueChangeEvent;
 import com.vaadin.data.Property.ValueChangeListener;
 import com.vaadin.shared.ui.AlignmentInfo.Bits;

@@ -1,8 +1,9 @@
-package com.github.wolfie.popupextension.demo;
+package org.vaadin.addons.demo;
 
-import com.github.wolfie.popupextension.test1.PopupExtensionTest1UI;
-import com.github.wolfie.popupextension.test2.PopupExtensionTest2UI;
-import com.github.wolfie.popupextension.test8.PopupExtensionTest8UI;
+import org.vaadin.addons.demo.test1.PopupExtensionTest1UI;
+import org.vaadin.addons.demo.test2.PopupExtensionTest2UI;
+import org.vaadin.addons.demo.test8.PopupExtensionTest8UI;
+
 import com.vaadin.server.UIClassSelectionEvent;
 import com.vaadin.server.UIProvider;
 import com.vaadin.ui.UI;
