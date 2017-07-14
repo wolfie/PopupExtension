@@ -35,6 +35,7 @@ public class PopupExtensionConnector extends AbstractExtensionConnector
 
     @Override
     public void onUnregister() {
+        popup.hide();
         super.onUnregister();
         PopupExtensionWidget.INSTANCES.remove(getState().id);
     }
