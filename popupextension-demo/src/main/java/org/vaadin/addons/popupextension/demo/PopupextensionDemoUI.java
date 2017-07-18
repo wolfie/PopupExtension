@@ -8,7 +8,7 @@ import com.vaadin.annotations.VaadinServletConfiguration;
 import com.vaadin.server.ExternalResource;
 import com.vaadin.server.VaadinRequest;
 import com.vaadin.server.VaadinServlet;
-import com.vaadin.shared.ui.label.ContentMode;
+import com.vaadin.shared.ui.ContentMode;
 import com.vaadin.ui.AbsoluteLayout;
 import com.vaadin.ui.Alignment;
 import com.vaadin.ui.Button;
@@ -81,7 +81,7 @@ public class PopupextensionDemoUI extends UI {
 	private Component getTestLayout() {
 		final CssLayout layout = new CssLayout();
 		layout.setWidth("300px");
-		layout.setHeight("300px");
+		layout.setHeight("350px");
 
 		layout.addComponent(new Label("<h1>Test Layout</h1>", ContentMode.HTML));
 		layout.addComponent(new Button("I do nothing"));

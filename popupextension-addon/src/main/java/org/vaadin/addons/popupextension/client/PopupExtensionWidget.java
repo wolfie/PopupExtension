@@ -52,7 +52,6 @@ public class PopupExtensionWidget extends VOverlay {
 
     public PopupExtensionWidget() {
         setPopupStyleName(null);
-        setShadowEnabled(false);
         Window.addResizeHandler(new ResizeHandler() {
             @Override
             public void onResize(final ResizeEvent event) {
