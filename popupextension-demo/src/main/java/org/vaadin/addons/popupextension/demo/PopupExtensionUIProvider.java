@@ -1,8 +1,8 @@
-package org.vaadin.addons.demo;
+package org.vaadin.addons.popupextension.demo;
 
-import org.vaadin.addons.demo.test1.PopupExtensionTest1UI;
-import org.vaadin.addons.demo.test2.PopupExtensionTest2UI;
-import org.vaadin.addons.demo.test8.PopupExtensionTest8UI;
+import org.vaadin.addons.popupextension.demo.test1.PopupExtensionTest1UI;
+import org.vaadin.addons.popupextension.demo.test2.PopupExtensionTest2UI;
+import org.vaadin.addons.popupextension.demo.test8.PopupExtensionTest8UI;
 
 import com.vaadin.server.UIClassSelectionEvent;
 import com.vaadin.server.UIProvider;

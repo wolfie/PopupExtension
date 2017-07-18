@@ -1,6 +1,6 @@
-package org.vaadin.addons.demo.test8;
+package org.vaadin.addons.popupextension.demo.test8;
 
-import org.vaadin.addons.PopupExtension;
+import org.vaadin.addons.popupextension.PopupExtension;
 
 import com.vaadin.server.VaadinRequest;
 import com.vaadin.ui.Alignment;

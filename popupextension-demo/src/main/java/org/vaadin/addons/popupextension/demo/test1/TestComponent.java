@@ -1,6 +1,6 @@
-package org.vaadin.addons.demo.test1;
+package org.vaadin.addons.popupextension.demo.test1;
 
-import org.vaadin.addons.PopupExtension;
+import org.vaadin.addons.popupextension.PopupExtension;
 
 import com.vaadin.ui.Button;
 import com.vaadin.ui.Button.ClickEvent;

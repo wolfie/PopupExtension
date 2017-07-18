@@ -1,9 +1,9 @@
-package org.vaadin.addons.client;
+package org.vaadin.addons.popupextension.client;
 
 import java.util.HashMap;
 import java.util.Map;
 
-import org.vaadin.addons.PopupExtensionDataTransferComponent;
+import org.vaadin.addons.popupextension.PopupExtensionDataTransferComponent;
 
 import com.google.gwt.user.client.Timer;
 import com.vaadin.client.ComponentConnector;

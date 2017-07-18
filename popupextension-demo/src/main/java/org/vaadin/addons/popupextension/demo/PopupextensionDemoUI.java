@@ -1,8 +1,8 @@
-package org.vaadin.addons.demo;
+package org.vaadin.addons.popupextension.demo;
 
 import javax.servlet.annotation.WebServlet;
 
-import org.vaadin.addons.PopupExtension;
+import org.vaadin.addons.popupextension.PopupExtension;
 
 import com.vaadin.annotations.VaadinServletConfiguration;
 import com.vaadin.server.ExternalResource;

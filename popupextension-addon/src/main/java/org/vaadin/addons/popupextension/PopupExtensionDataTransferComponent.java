@@ -1,6 +1,6 @@
-package org.vaadin.addons;
+package org.vaadin.addons.popupextension;
 
-import org.vaadin.addons.client.PopupExtensionDataTransferComponentState;
+import org.vaadin.addons.popupextension.client.PopupExtensionDataTransferComponentState;
 
 import com.vaadin.ui.AbstractSingleComponentContainer;
 

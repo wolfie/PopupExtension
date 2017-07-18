@@ -1,6 +1,6 @@
-package org.vaadin.addons.demo;
+package org.vaadin.addons.popupextension.demo;
 
-import org.vaadin.addons.PopupExtension;
+import org.vaadin.addons.popupextension.PopupExtension;
 
 import com.vaadin.data.Property.ValueChangeEvent;
 import com.vaadin.data.Property.ValueChangeListener;

@@ -1,4 +1,4 @@
-package org.vaadin.addons.client;
+package org.vaadin.addons.popupextension.client;
 
 import com.google.gwt.user.client.DOM;
 import com.google.gwt.user.client.ui.Widget;

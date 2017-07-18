@@ -1,11 +1,11 @@
-package org.vaadin.addons;
+package org.vaadin.addons.popupextension;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
-import org.vaadin.addons.client.PopupExtensionServerRpc;
-import org.vaadin.addons.client.PopupExtensionState;
+import org.vaadin.addons.popupextension.client.PopupExtensionServerRpc;
+import org.vaadin.addons.popupextension.client.PopupExtensionState;
 
 import com.vaadin.server.AbstractClientConnector;
 import com.vaadin.server.AbstractExtension;

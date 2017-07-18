@@ -1,4 +1,4 @@
-package org.vaadin.addons;
+package org.vaadin.addons.popupextension;
 
 import junit.framework.Assert;
 import org.junit.Test;

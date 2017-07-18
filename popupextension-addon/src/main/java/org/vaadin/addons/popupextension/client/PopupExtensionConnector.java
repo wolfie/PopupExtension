@@ -1,6 +1,6 @@
-package org.vaadin.addons.client;
+package org.vaadin.addons.popupextension.client;
 
-import org.vaadin.addons.PopupExtension;
+import org.vaadin.addons.popupextension.PopupExtension;
 
 import com.google.gwt.user.client.ui.Widget;
 import com.vaadin.client.ComponentConnector;

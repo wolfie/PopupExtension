@@ -1,4 +1,4 @@
-package org.vaadin.addons.demo.test1;
+package org.vaadin.addons.popupextension.demo.test1;
 
 import com.vaadin.server.VaadinRequest;
 import com.vaadin.ui.Panel;
